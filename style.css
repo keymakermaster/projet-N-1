@@ -1,39 +1,11 @@
 body {
+  background: #202028;
+  color: #fff;
   font-family: sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background-color: #f0f0f0;
-  margin: 0;
-}
-
-h1 {
-  color: #333;
-}
-
-.container {
-  display: flex;
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.timezone {
-  background-color: #fff;
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  font-size: 2em;
   text-align: center;
 }
-
-.timezone h2 {
-  margin-top: 0;
-  color: #555;
-}
-
-#korea-time, #usa-time {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #007BFF;
+canvas {
+  border: solid .2em #fff;
+  height: 90vh;
 }
