@@ -8,8 +8,18 @@
 </head>
 <body>
   <h1>Tetris</h1>
-  <h2>Score: <span id="score">0</span></h2>
+  <div id="info">
+      <h2>Score: <span id="score">0</span></h2>
+      <h2>Level: <span id="level">1</span></h2>
+  </div>
   <canvas id="tetris" width="240" height="400"></canvas>
+  <div id="buttons">
+    <button id="start-button">Start</button>
+    <button id="stop-button">Pause</button>
+  </div>
+  <div id="instructions">
+      <p>Controls: Left/Right Arrows (Move), Down Arrow (Drop), Q/W (Rotate)</p>
+  </div>
   <script defer type="text/javascript" src="/main.js"></script>
 </body>
 </html>
