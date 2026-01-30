@@ -1,25 +1,35 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tetris</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>닮은 연예인 찾기</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Tetris</h1>
-  <div id="info">
-      <h2>Score: <span id="score">0</span></h2>
-      <h2>Level: <span id="level">1</span></h2>
-  </div>
-  <canvas id="tetris" width="240" height="400"></canvas>
-  <div id="buttons">
-    <button id="start-button">Start</button>
-    <button id="stop-button">Pause</button>
-  </div>
-  <div id="instructions">
-      <p>Controls: Left/Right Arrows (Move), Down Arrow (Drop), Q/W (Rotate)</p>
-  </div>
-  <script defer type="text/javascript" src="/main.js"></script>
+    <div class="container">
+        <h1>닮은 연예인 찾기</h1>
+        <p>사진을 업로드하여 당신과 닮은 연예인을 찾아보세요!</p>
+        
+        <div class="upload-area">
+            <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+            <label for="imageUpload" class="upload-label">
+                + 사진 선택하기
+            </label>
+        </div>
+        
+        <div id="preview" class="preview-area" style="display:none;">
+            <h2>미리보기</h2>
+            <img id="imagePreview" src="#" alt="Image preview">
+        </div>
+        
+        <div id="loading" class="loading-spinner" style="display:none;"></div>
+
+        <div id="result" class="result-area" style="display:none;">
+            <h2>분석 결과</h2>
+            <p id="resultText"></p>
+        </div>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>
