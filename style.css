@@ -76,4 +76,26 @@ button:hover {
     border-radius: 10px;
     min-height: 50px;
     line-height: 1.6;
+    text-align: left;
+}
+
+.result-category {
+    margin-bottom: 20px;
+}
+
+.result-category:last-child {
+    margin-bottom: 0;
+}
+
+.result-category h3 {
+    color: #fca311;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #fca311;
+    padding-bottom: 5px;
+}
+
+.result-category p {
+    font-size: 0.95em;
+    margin-bottom: 0;
 }
