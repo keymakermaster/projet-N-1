@@ -3,20 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>오늘의 운세</title>
+    <title>영양 정보 검색</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>오늘의 운세</h1>
-        <p>당신의 생년월일시를 입력해주세요.</p>
+        <h1>영양 정보 검색</h1>
+        <p>영양분 또는 신체 부위를 입력하여 정보를 검색하세요.</p>
         <div class="input-group">
-            <input type="number" id="year" placeholder="태어난 년도 (YYYY)">
-            <input type="number" id="month" placeholder="월">
-            <input type="number" id="day" placeholder="일">
-            <input type="number" id="hour" placeholder="시">
+            <input type="text" id="search-input" placeholder="예: 비타민 C 또는 눈">
         </div>
-        <button id="get-fortune-btn">운세 보기</button>
+        <button id="search-btn">검색</button>
         <div id="result"></div>
     </div>
     <script src="main.js"></script>
