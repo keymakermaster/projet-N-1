@@ -1,60 +1,81 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const imageUpload = document.getElementById('imageUpload');
-    const imagePreview = document.getElementById('imagePreview');
-    const previewContainer = document.getElementById('preview');
-    const loadingSpinner = document.getElementById('loading');
-    const resultContainer = document.getElementById('result');
-    const resultText = document.getElementById('resultText');
-    const resultImage = document.getElementById('resultImage');
+document.getElementById('get-fortune-btn').addEventListener('click', function() {
+    const year = document.getElementById('year').value;
+    const resultDiv = document.getElementById('result');
 
-    imageUpload.addEventListener('change', (event) => {
-        const file = event.target.files[0];
+    if (!year) {
+        resultDiv.innerHTML = "태어난 년도를 입력해주세요.";
+        return;
+    }
 
-        if (file) {
-            // Reset previous results
-            resultContainer.style.display = 'none';
-            resultImage.style.display = 'none';
-            resultText.textContent = '';
+    const zodiacs = [
+        "원숭이", "닭", "개", "돼지", "쥐", "소", "호랑이", "토끼", "용", "뱀", "말", "양"
+    ];
+    const zodiac = zodiacs[year % 12];
 
-            // Show image preview
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                imagePreview.src = e.target.result;
-                previewContainer.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
+    const fortunes = {
+        "쥐": [
+            "새로운 기회가 찾아오지만 신중한 결정이 필요합니다.",
+            "금전운이 좋지만, 예상치 못한 지출에 주의하세요.",
+            "인간관계에서 작은 오해가 생길 수 있으니, 말을 조심해야 합니다."
+        ],
+        "소": [
+            "꾸준함이 빛을 발하는 날입니다. 계획한 일을 밀고 나가세요.",
+            "예상치 못한 행운이 찾아올 수 있습니다. 주변을 잘 살펴보세요.",
+            "건강에 신경 써야 할 때입니다. 충분한 휴식을 취하세요."
+        ],
+        "호랑이": [
+            "도전적인 자세가 좋은 결과를 가져옵니다. 망설이지 마세요.",
+            "리더십을 발휘할 기회가 생깁니다. 자신감을 가지세요.",
+            "충동적인 결정은 금물. 한 번 더 생각하고 행동하세요."
+        ],
+        "토끼": [
+            "오늘은 주변 사람들과의 화합이 중요합니다. 배려하는 마음을 가지세요.",
+            "예술적 감각이 뛰어난 날입니다. 창의적인 활동을 해보세요.",
+            "작은 스트레스가 쌓일 수 있습니다. 명상이나 산책으로 마음을 다스리세요."
+        ],
+        "용": [
+            "자신감이 넘치고 활력이 솟는 날입니다. 무엇이든 할 수 있습니다.",
+            "중요한 계약이나 약속이 있다면 오늘 성사될 가능성이 높습니다.",
+            "주변의 시기나 질투를 받을 수 있으니 겸손한 태도를 유지하세요."
+        ],
+        "뱀": [
+            "지혜와 통찰력이 빛나는 날입니다. 어려운 문제를 해결할 수 있습니다.",
+            "비밀스러운 매력이 사람들을 끌어당깁니다. 새로운 인연을 기대해보세요.",
+            "금전적인 유혹에 빠지기 쉽습니다. 신중하게 판단하세요."
+        ],
+        "말": [
+            "활동적인 에너지가 가득한 날입니다. 여행이나 새로운 도전을 해보세요.",
+            "긍정적인 소식이 들려올 것입니다. 귀를 기울여보세요.",
+            "성급한 판단으로 실수를 할 수 있으니, 침착함을 유지하세요."
+        ],
+        "양": [
+            "따뜻한 마음이 주변 사람들에게 전달되는 날입니다. 친절을 베푸세요.",
+            "안정적인 하루가 예상됩니다. 현재에 만족하고 감사하는 마음을 가지세요.",
+            "작은 약속이라도 소중히 여기세요. 신뢰를 잃지 않도록 주의해야 합니다."
+        ],
+        "원숭이": [
+            "재치와 유머 감각이 빛을 발하는 날입니다. 주변을 즐겁게 만드세요.",
+            "새로운 아이디어가 샘솟습니다. 메모하는 습관을 들이세요.",
+            "잔꾀를 부리다가 오히려 손해를 볼 수 있으니, 정직함이 최선입니다."
+        ],
+        "닭": [
+            "꼼꼼함과 성실함이 인정받는 날입니다. 맡은 바를 완수하세요.",
+            "예상치 못한 수입이 생길 수 있습니다. 현명하게 사용하세요.",
+            "사소한 일로 주변 사람들과 다툴 수 있습니다. 너그러운 마음을 가지세요."
+        ],
+        "개": [
+            "책임감이 강해지고 신뢰를 얻는 날입니다. 주변 사람들이 당신을 찾습니다.",
+            "오랜 친구에게서 반가운 연락이 올 수 있습니다.",
+            "스트레스로 인한 과식을 주의해야 합니다. 건강한 식습관을 유지하세요."
+        ],
+        "돼지": [
+            "운이 좋은 날입니다. 긍정적인 마음으로 하루를 시작하세요.",
+            "맛있는 음식을 먹거나 즐거운 시간을 보내며 행복을 만끽하세요.",
+            "게으름에 빠지기 쉬운 날입니다. 작은 목표라도 세우고 실천해보세요."
+        ]
+    };
 
-            // Show loading spinner and simulate analysis
-            loadingSpinner.style.display = 'block';
-            
-            setTimeout(() => {
-                // Hide loading spinner
-                loadingSpinner.style.display = 'none';
+    const todayFortune = fortunes[zodiac][Math.floor(Math.random() * fortunes[zodiac].length)];
 
-                // --- Mock AI Analysis ---
-                // In a real application, you would send the 'file' to a server
-                // which then calls a face recognition API.
-                // Here, we just pick a random celebrity from a list.
-                const celebrities = [
-                    { name: '아이유', score: 92, imageUrl: 'https://i.namu.wiki/i/R01gB3p4tK3b5_1024.jpg' },
-                    { name: '박보검', score: 88, imageUrl: 'https://i.namu.wiki/i/2h5p7h5d_1024.jpg' },
-                    { name: '공유', score: 85, imageUrl: 'https://i.namu.wiki/i/2h5p7h5d_1024.jpg' },
-                    { name: '김태희', score: 95, imageUrl: 'https://i.namu.wiki/i/2h5p7h5d_1024.jpg' },
-                    { name: '송강', score: 91, imageUrl: 'https://i.namu.wiki/i/2h5p7h5d_1024.jpg' },
-                    { name: '한소희', score: 89, imageUrl: 'https://i.namu.wiki/i/2h5p7h5d_1024.jpg' },
-                    { name: '차은우', score: 98, imageUrl: 'https://i.namu.wiki/i/2h5p7h5d_1024.jpg' },
-                    { name: '제니', score: 93, imageUrl: 'https://i.namu.wiki/i/2h5p7h5d_1024.jpg' },
-                ];
-                
-                const randomChoice = celebrities[Math.floor(Math.random() * celebrities.length)];
-                
-                // Display result
-                resultImage.src = randomChoice.imageUrl;
-                resultImage.style.display = 'block';
-                resultText.textContent = `분석 결과, 당신은 ${randomChoice.score}% 확률로 ${randomChoice.name}님을 닮았습니다!`;
-                resultContainer.style.display = 'block';
-
-            }, 2500); // Simulate a 2.5-second analysis
-        }
-    });
+    resultDiv.innerHTML = `당신은 ${zodiac}띠입니다.<br><br><strong>오늘의 운세:</strong> ${todayFortune}`;
 });

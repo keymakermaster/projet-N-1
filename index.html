@@ -3,33 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>닮은 연예인 찾기</title>
+    <title>오늘의 운세</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>닮은 연예인 찾기</h1>
-        <p>사진을 업로드하여 당신과 닮은 연예인을 찾아보세요!</p>
-        
-        <div class="upload-area">
-            <input type="file" id="imageUpload" accept="image/*" style="display: none;">
-            <label for="imageUpload" class="upload-label">
-                + 사진 선택하기
-            </label>
+        <h1>오늘의 운세</h1>
+        <p>당신의 생년월일시를 입력해주세요.</p>
+        <div class="input-group">
+            <input type="number" id="year" placeholder="태어난 년도 (YYYY)">
+            <input type="number" id="month" placeholder="월">
+            <input type="number" id="day" placeholder="일">
+            <input type="number" id="hour" placeholder="시">
         </div>
-        
-        <div id="preview" class="preview-area" style="display:none;">
-            <h2>미리보기</h2>
-            <img id="imagePreview" src="#" alt="Image preview">
-        </div>
-        
-        <div id="loading" class="loading-spinner" style="display:none;"></div>
-
-        <div id="result" class="result-area" style="display:none;">
-            <h2>분석 결과</h2>
-            <img id="resultImage" src="#" alt="닮은 연예인 사진" style="display: none;">
-            <p id="resultText"></p>
-        </div>
+        <button id="get-fortune-btn">운세 보기</button>
+        <div id="result"></div>
     </div>
     <script src="main.js"></script>
 </body>
