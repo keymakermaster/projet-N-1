@@ -1,19 +1,14 @@
 "use client";
 
-import {
-  Activity, Aperture, Airplay, AlarmClock, Album, Anchor, Archive, AtSign, Award, Book, Box, Briefcase, Camera, CheckCircle, Circle, Clipboard, Clock, Cloud, Code, Coffee, Cpu, Database, Disc, Edit, Eye, Feather, Flag, Folder, Github, Globe, Heart, Home, Image, Inbox, Layers, Layout, Link, Lock, MapPin, Maximize, Mic, Moon, Music, Package, PenTool, Power, Save, Search, Send, Settings, Shield, ShoppingCart, Sidebar, Star, Sun, Tablet, Tag, Target, Thermometer, ThumbsUp, Trash2, TrendingUp, Truck, User, Video, Watch, Wifi, Wind, Zap
-} from 'lucide-react';
+import * as icons from 'lucide-react';
 import { FC, useState } from 'react';
 
-const icons = {
-  Activity, Aperture, Airplay, AlarmClock, Album, Anchor, Archive, AtSign, Award, Book, Box, Briefcase, Camera, CheckCircle, Circle, Clipboard, Clock, Cloud, Code, Coffee, Cpu, Database, Disc, Edit, Eye, Feather, Flag, Folder, Github, Globe, Heart, Home, Image, Inbox, Layers, Layout, Link, Lock, MapPin, Maximize, Mic, Moon, Music, Package, PenTool, Power, Save, Search, Send, Settings, Shield, ShoppingCart, Sidebar, Star, Sun, Tablet, Tag, Target, Thermometer, ThumbsUp, Trash2, TrendingUp, Truck, User, Video, Watch, Wifi, Wind, Zap
-};
-
 interface IconPickerProps {
+  selectedIcon: keyof typeof icons | null;
   onIconSelect: (iconName: keyof typeof icons) => void;
 }
 
-const IconPicker: FC<IconPickerProps> = ({ onIconSelect }) => {
+const IconPicker: FC<IconPickerProps> = ({ selectedIcon, onIconSelect }) => {
   const [search, setSearch] = useState('');
 
   const filteredIcons = Object.keys(icons).filter(iconName =>
@@ -33,10 +28,15 @@ const IconPicker: FC<IconPickerProps> = ({ onIconSelect }) => {
       <div className="icon-grid">
         {filteredIcons.map((iconName) => {
           const Icon = icons[iconName as keyof typeof icons];
+          // @ts-ignore
+          if (typeof Icon !== 'function' || !Icon.displayName) {
+            return null;
+          }
+
           return (
             <div
               key={iconName}
-              className="icon-item"
+              className={`icon-item ${iconName === selectedIcon ? 'selected' : ''}`}
               onClick={() => onIconSelect(iconName as keyof typeof icons)}
             >
               <Icon />

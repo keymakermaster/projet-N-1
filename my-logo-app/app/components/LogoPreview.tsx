@@ -5,47 +5,42 @@ import Icon from './Icon';
 import * as icons from 'lucide-react';
 
 interface LogoPreviewProps {
-  text: string;
-  textColor: string;
-  fontSize: number;
-  fontFamily: string;
   iconName: keyof typeof icons | null;
   iconSize: number;
   iconColor: string;
-  layout: string;
-  spacing: number;
+  iconRotation: number;
+  backgroundColor: string;
+  backgroundShape: 'circle' | 'square' | 'rounded';
+  backgroundPadding: number;
 }
 
 const LogoPreview: FC<LogoPreviewProps> = ({
-  text,
-  textColor,
-  fontSize,
-  fontFamily,
   iconName,
   iconSize,
   iconColor,
-  layout,
-  spacing,
+  iconRotation,
+  backgroundColor,
+  backgroundShape,
+  backgroundPadding,
 }) => {
-  const logoContainerStyle: React.CSSProperties = {
+  const backgroundStyle: React.CSSProperties = {
+    padding: `${backgroundPadding}px`,
+    backgroundColor: backgroundColor,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: layout === 'top' ? 'column' : 'row',
-    gap: `${spacing}px`,
+    borderRadius: backgroundShape === 'circle' ? '50%' : backgroundShape === 'rounded' ? '24px' : '0',
   };
 
-  const textStyle: React.CSSProperties = {
-    color: textColor,
-    fontSize: `${fontSize}px`,
-    fontFamily: fontFamily,
-    margin: 0,
+  const iconStyle: React.CSSProperties = {
+    transform: `rotate(${iconRotation}deg)`,
   };
 
   return (
-    <div style={logoContainerStyle}>
-      {iconName && <Icon name={iconName} size={iconSize} color={iconColor} />}
-      <p style={textStyle}>{text}</p>
+    <div style={backgroundStyle}>
+      <div style={iconStyle}>
+        {iconName && <Icon name={iconName} size={iconSize} color={iconColor} />}
+      </div>
     </div>
   );
 };
